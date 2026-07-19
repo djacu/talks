@@ -22,22 +22,29 @@
     <link rel="stylesheet" href="theme/highlight.css" />
 
     <style>
-      .reveal .handles small {
+      .reveal .byline {
+        font-size: 0.6em;
+        line-height: 1.4;
+      }
+      .reveal .byline .name {
+        margin-bottom: 0.25em;
+      }
+      .reveal .byline .handles {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 0.6em;
       }
-      .reveal .handles .handle {
+      .reveal .byline .handle {
         display: inline-flex;
         align-items: center;
         gap: 0.3em;
       }
-      .reveal .handles .brand-icon {
+      .reveal .byline .brand-icon {
         width: 1em;
         height: 1em;
       }
-      .reveal .handles .sep {
+      .reveal .byline .sep {
         opacity: 0.4;
       }
     </style>
@@ -68,15 +75,15 @@ endif()
         <section>
           <h1>Beholden to No One</h1>
           <h3>The Nix Override Ladder</h3>
-          <p><small>Daniel Baker</small></p>
-          <p class="handles">
-            <small>
+          <p><small>Nix Vegas 2026</small></p>
+          <div class="byline">
+            <div class="name">Daniel Baker</div>
+            <div class="handles">
               <span class="handle"><img class="brand-icon" src="icons/github.svg" alt="GitHub" />djacu</span>
               <span class="sep">&middot;</span>
               <span class="handle"><img class="brand-icon" src="icons/bluesky.svg" alt="Bluesky" />djacu.bsky.social</span>
-            </small>
-          </p>
-          <p><small>Nix Vegas 2026</small></p>
+            </div>
+          </div>
           <aside class="notes">
             Quick intro. "I'm Daniel Baker, djacu on GitHub and
             djacu.bsky.social on Bluesky. This talk is about who gets to decide

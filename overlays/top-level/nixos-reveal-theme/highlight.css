@@ -1,0 +1,20 @@
+/* nixos-reveal-theme highlight.js theme — light background, NixOS accents.
+ * Token colors from @nixos/branding (OKLCH). Starting points, tuned live.
+ * reveal.css handles line-number stepping and line dimming; this file only
+ * styles tokens, the code block background, and code color. */
+.reveal .hljs{
+  background: oklch(0.96 0.01 240);
+  color: oklch(0.25 0 0);
+  border-radius: 4px;
+}
+.hljs-comment,.hljs-quote{ color: oklch(0.55 0 0); font-style: italic; }
+.hljs-keyword,.hljs-selector-tag{ color: oklch(0.55 0.12 264); }
+.hljs-number,.hljs-literal{ color: oklch(0.55 0.11 54); }
+.hljs-string,.hljs-meta-string{ color: oklch(0.50 0.10 152); }
+.hljs-title,.hljs-section,.hljs-name{ color: oklch(0.50 0.11 288); }
+.hljs-type,.hljs-built_in{ color: oklch(0.55 0.11 330); }
+.hljs-attr,.hljs-attribute,.hljs-variable,.hljs-template-variable{ color: oklch(0.55 0.11 240); }
+.hljs-meta{ color: oklch(0.55 0 0); }
+.hljs-subst{ color: oklch(0.25 0 0); }
+.hljs-emphasis{ font-style: italic; }
+.hljs-strong{ font-weight: 700; }

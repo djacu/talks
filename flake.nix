@@ -1,6 +1,6 @@
 {
 
-  description = "<project name>";
+  description = "talks: conference talks and slide decks, each built as a Nix derivation";
 
   inputs = {
     disko.inputs.nixpkgs.follows = "nixpkgs";

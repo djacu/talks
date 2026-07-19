@@ -1,6 +1,8 @@
-# <project name>
+# talks
 
-<project description>
+Home for my conference talks. Each talk lives as a Nix derivation under
+`overlays/top-level/<talk>/package.nix`, gets auto-discovered by the overlay,
+and builds on its own.
 
 ## Project Structure
 

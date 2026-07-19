@@ -1,12 +1,12 @@
 <!--
   Beholden to No One: The Nix Override Ladder (Nix Vegas 2026)
 
-  SCAFFOLD / PLACEHOLDER CONTENT. These slides exist to prove the build
-  pipeline and exercise the features we rely on (highlight line-stepping,
-  fragments, speaker notes). The real narrative is still to be written.
+  Slides are being built out from OUTLINE.md. This currently holds the opening
+  run (cold open, title, thesis); more slides to come. Speaker notes live in
+  <aside class="notes"> and are drafts in the speaker's voice, to be refined.
 
   Uses reveal's classic <script src> (UMD) includes so the deck opens from a
-  bare file:// with no web server. Theme "black" is a placeholder.
+  bare file:// with no web server.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -19,49 +19,62 @@
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
     <link rel="stylesheet" href="theme/theme.css" id="theme" />
-
-    <!-- Syntax highlighting theme for code blocks -->
     <link rel="stylesheet" href="theme/highlight.css" />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
+        <!-- 1. Cold open: DuckStation refuses you (bookend teaser) -->
+        <section>
+          <pre><code class="language-cmake" data-trim data-noescape>
+if(OS_RELEASE_CONTENT MATCHES "ID=nixos")
+  message(FATAL_ERROR "Unsupported environment.")
+endif()
+          </code></pre>
+          <p class="fragment"><em>"This is why we can't have nice things."</em></p>
+          <aside class="notes">
+            Cold open. Do NOT name the project yet. Roughly: "This is a real
+            build script, shipping in real software you might want to run. It
+            reads which operating system you're on. If it gets the wrong answer,
+            it doesn't warn you, it refuses to compile. No flag, no override.
+            Just: no." Beat, then advance to reveal the quote. "Those are the
+            author's own words, in a comment right above it." Beat. "Hold onto
+            that. We'll come back to it." Advance to the title.
+          </aside>
+        </section>
+
+        <!-- 2. Title -->
         <section>
           <h1>Beholden to No One</h1>
           <h3>The Nix Override Ladder</h3>
           <p><small>Nix Vegas 2026</small></p>
-        </section>
-
-        <section>
-          <h2>Overrule the package</h2>
-          <p>A maintainer won't merge the fix. You don't have to wait.</p>
-          <pre><code class="language-nix" data-trim data-noescape data-line-numbers="1|2|3-8">
-glow.overrideAttrs (old: {
-  patches = (old.patches or [ ]) ++ [
-    (fetchpatch {
-      url = "https://github.com/charmbracelet/glow/pull/886.patch";
-      hash = "sha256-AAAA...";
-    })
-  ];
-})
-          </code></pre>
           <aside class="notes">
-            Placeholder speaker note: this is the Act I live-demo-turned-slide.
-            glow PR 886 has sat unmerged for months; four lines get the fix.
+            Quick intro. "I'm Daniel. This talk is about who gets to decide what
+            runs on your computer, and how, with Nix, that person can be you."
           </aside>
         </section>
 
+        <!-- 3. Thesis -->
         <section>
-          <h2>The ladder</h2>
+          <h2>Software decides for you</h2>
           <ul>
-            <li class="fragment">Configure</li>
-            <li class="fragment">Overrule the module</li>
-            <li class="fragment">Overrule the package</li>
-            <li class="fragment">Overrule the ecosystem</li>
-            <li class="fragment">Overrule the distro</li>
-            <li class="fragment">Overrule time</li>
-            <li class="fragment">Own the supply chain</li>
+            <li class="fragment">Forced updates</li>
+            <li class="fragment">Telemetry you didn't ask for</li>
+            <li class="fragment">Install methods deprecated out from under you</li>
+            <li class="fragment">Licenses that flip overnight</li>
+            <li class="fragment">"Your operating system isn't real"</li>
           </ul>
+          <p class="fragment"><strong>Comply, or quit.</strong></p>
+          <p class="fragment">Unless you have the source.</p>
+          <aside class="notes">
+            Walk the list one click at a time, a quick real example for each:
+            forced updates (a reboot mid-talk); telemetry (Audacity, 2021);
+            install methods deprecated (Home Assistant); licenses that flip
+            (HashiCorp/Terraform overnight); "your OS isn't real" (that cold-open
+            build script). Then: "On most platforms your options are two: comply,
+            or quit." Beat. Reveal the last line: "Unless you have the source.
+            That's the whole talk. Let's climb the ladder."
+          </aside>
         </section>
       </div>
     </div>

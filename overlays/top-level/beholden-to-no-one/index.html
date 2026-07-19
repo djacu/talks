@@ -20,6 +20,19 @@
     <link rel="stylesheet" href="dist/reveal.css" />
     <link rel="stylesheet" href="theme/theme.css" id="theme" />
     <link rel="stylesheet" href="theme/highlight.css" />
+
+    <style>
+      .reveal .handles .brand-icon {
+        width: 0.9em;
+        height: 0.9em;
+        vertical-align: -0.12em;
+        margin-right: 0.2em;
+      }
+      .reveal .handles .sep {
+        margin: 0 0.5em;
+        opacity: 0.5;
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
@@ -47,12 +60,18 @@ endif()
         <section>
           <h1>Beholden to No One</h1>
           <h3>The Nix Override Ladder</h3>
-          <p><small>Daniel Baker &middot; github.com/djacu</small></p>
+          <p><small>Daniel Baker</small></p>
+          <p class="handles">
+            <small>
+              <img class="brand-icon" src="icons/github.svg" alt="GitHub" />djacu<span class="sep">&middot;</span><img class="brand-icon" src="icons/bluesky.svg" alt="Bluesky" />djacu.bsky.social
+            </small>
+          </p>
           <p><small>Nix Vegas 2026</small></p>
           <aside class="notes">
-            Quick intro. "I'm Daniel Baker, djacu on GitHub. This talk is about
-            who gets to decide what runs on your computer, and how, with Nix,
-            that person can be you."
+            Quick intro. "I'm Daniel Baker, djacu on GitHub and
+            djacu.bsky.social on Bluesky. This talk is about who gets to decide
+            what runs on your computer, and how, with Nix, that person can be
+            you."
           </aside>
         </section>
 
@@ -82,8 +101,8 @@ endif()
               <li><strong>Licenses flip:</strong> "HashiCorp relicensed Terraform
                 overnight. Same code, new terms, you get no say."</li>
               <li><strong>Your OS isn't real:</strong> "And some projects check
-                your distro and refuse to run. You saw one thirty seconds
-                ago."</li>
+                your distro and refuse to run. You saw one at the
+                beginning."</li>
             </ol>
             <p>Then the turn: "On most platforms your options are two.
               <strong>Comply, or quit.</strong>" [beat] "<strong>Unless you have

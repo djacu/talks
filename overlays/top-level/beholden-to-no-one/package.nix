@@ -19,6 +19,7 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out
     cp -r ${reveal-js}/dist $out/dist
     cp -r ${nixos-reveal-theme} $out/theme
+    cp -r ${./icons} $out/icons
     cp ${./index.html} $out/index.html
 
     runHook postInstall

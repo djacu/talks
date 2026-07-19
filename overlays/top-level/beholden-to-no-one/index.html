@@ -22,15 +22,23 @@
     <link rel="stylesheet" href="theme/highlight.css" />
 
     <style>
+      .reveal .handles small {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6em;
+      }
+      .reveal .handles .handle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3em;
+      }
       .reveal .handles .brand-icon {
-        width: 0.9em;
-        height: 0.9em;
-        vertical-align: -0.12em;
-        margin-right: 0.2em;
+        width: 1em;
+        height: 1em;
       }
       .reveal .handles .sep {
-        margin: 0 0.5em;
-        opacity: 0.5;
+        opacity: 0.4;
       }
     </style>
   </head>
@@ -63,7 +71,9 @@ endif()
           <p><small>Daniel Baker</small></p>
           <p class="handles">
             <small>
-              <img class="brand-icon" src="icons/github.svg" alt="GitHub" />djacu<span class="sep">&middot;</span><img class="brand-icon" src="icons/bluesky.svg" alt="Bluesky" />djacu.bsky.social
+              <span class="handle"><img class="brand-icon" src="icons/github.svg" alt="GitHub" />djacu</span>
+              <span class="sep">&middot;</span>
+              <span class="handle"><img class="brand-icon" src="icons/bluesky.svg" alt="Bluesky" />djacu.bsky.social</span>
             </small>
           </p>
           <p><small>Nix Vegas 2026</small></p>

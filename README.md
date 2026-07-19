@@ -26,7 +26,6 @@ The directory name becomes the hostname. Each host automatically gets:
 
 - The default overlay applied
 - All NixOS modules from `nixosModules/`
-- Disko disk management module
 - A deterministic `hostId` derived from the hostname
 
 ## Adding Packages

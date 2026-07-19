@@ -1,0 +1,79 @@
+<!--
+  Beholden to No One: The Nix Override Ladder (Nix Vegas 2026)
+
+  SCAFFOLD / PLACEHOLDER CONTENT. These slides exist to prove the build
+  pipeline and exercise the features we rely on (highlight line-stepping,
+  fragments, speaker notes). The real narrative is still to be written.
+
+  Uses reveal's classic <script src> (UMD) includes so the deck opens from a
+  bare file:// with no web server. Theme "black" is a placeholder.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Beholden to No One: The Nix Override Ladder</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Syntax highlighting theme for code blocks -->
+    <link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Beholden to No One</h1>
+          <h3>The Nix Override Ladder</h3>
+          <p><small>Nix Vegas 2026</small></p>
+        </section>
+
+        <section>
+          <h2>Overrule the package</h2>
+          <p>A maintainer won't merge the fix. You don't have to wait.</p>
+          <pre><code class="language-nix" data-trim data-noescape data-line-numbers="1|2|3-8">
+glow.overrideAttrs (old: {
+  patches = (old.patches or [ ]) ++ [
+    (fetchpatch {
+      url = "https://github.com/charmbracelet/glow/pull/886.patch";
+      hash = "sha256-AAAA...";
+    })
+  ];
+})
+          </code></pre>
+          <aside class="notes">
+            Placeholder speaker note: this is the Act I live-demo-turned-slide.
+            glow PR 886 has sat unmerged for months; four lines get the fix.
+          </aside>
+        </section>
+
+        <section>
+          <h2>The ladder</h2>
+          <ul>
+            <li class="fragment">Configure</li>
+            <li class="fragment">Overrule the module</li>
+            <li class="fragment">Overrule the package</li>
+            <li class="fragment">Overrule the ecosystem</li>
+            <li class="fragment">Overrule the distro</li>
+            <li class="fragment">Overrule time</li>
+            <li class="fragment">Own the supply chain</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="dist/plugin/notes.js"></script>
+    <script src="dist/plugin/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

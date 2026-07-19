@@ -126,6 +126,110 @@ endif()
               the source.</strong> That's the whole talk. Let's climb."</p>
           </aside>
         </section>
+
+        <!-- 4. Mechanics: the override priority ladder -->
+        <section>
+          <h2>Every setting has a priority</h2>
+          <table>
+            <tbody>
+              <tr class="fragment">
+                <td>option default</td>
+                <td><code>1500</code></td>
+              </tr>
+              <tr class="fragment">
+                <td><code>mkDefault</code></td>
+                <td><code>1000</code></td>
+              </tr>
+              <tr class="fragment">
+                <td>your plain assignment</td>
+                <td><code>100</code></td>
+              </tr>
+              <tr class="fragment">
+                <td><code>mkForce</code></td>
+                <td><code>50</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="fragment"><strong>Lowest number wins.</strong></p>
+          <aside class="notes">
+            <p>Reveal the rows top to bottom:</p>
+            <ol>
+              <li><strong>Option default (1500):</strong> "Every option ships
+                with a built-in default."</li>
+              <li><strong>mkDefault (1000):</strong> "A module can suggest a
+                value politely, meant to be overridden."</li>
+              <li><strong>Your plain assignment (100):</strong> "When you just
+                set the value, you're already at 100."</li>
+              <li><strong>mkForce (50):</strong> "And when you really mean it,
+                mkForce."</li>
+            </ol>
+            <p>Land it: "Lowest number wins. So just by writing a normal setting
+              you already outrank every default the module handed you. The
+              module system keeps score, and you hold the strong cards."</p>
+          </aside>
+        </section>
+
+        <!-- 5. Mechanics: nginx, mkDefault vs plain -->
+        <section>
+          <h2>One module, two overrides</h2>
+          <pre><code class="language-nix" data-trim data-noescape>
+# nixpkgs nginx module (systemd hardening)
+ProtectSystem = "strict";      # plain, so 100
+ProtectHome = mkDefault true;  # a default, so 1000
+          </code></pre>
+          <p class="fragment">
+            Serve from <code>/home</code>? <code>ProtectHome = false;</code> just
+            wins. (100 beats 1000)
+          </p>
+          <p class="fragment">
+            Loosen <code>ProtectSystem</code>? Same priority, a conflict. Reach
+            for <code>mkForce</code>.
+          </p>
+          <aside class="notes">
+            <p>Show the two lines, then the two outcomes:</p>
+            <ol>
+              <li><strong>ProtectHome:</strong> "The module set this as a
+                default. Need nginx to serve a user's files from /home? Write
+                ProtectHome = false. You're 100, the default is 1000, lower
+                wins, done. No ceremony."</li>
+              <li><strong>ProtectSystem:</strong> "This one the module set
+                plainly, also 100. Your normal override ties it, and a tie is a
+                conflict, an error. That's the module saying it meant this. So
+                you say mkForce and outrank it. The error isn't in your way,
+                it's a seatbelt."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 6. Mechanics: firefox policies (laugh) -->
+        <section>
+          <h2>Manage your own browser</h2>
+          <pre><code class="language-nix" data-trim data-noescape>
+programs.firefox.policies = {
+  DisableTelemetry = true;
+  DisablePocket = true;
+};
+          </code></pre>
+          <p class="fragment">
+            Firefox: <em>"Your browser is managed by your organisation."</em>
+          </p>
+          <p class="fragment">
+            The NixOS docs: <em>"...unless of course they also control your
+            NixOS configuration."</em>
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The config:</strong> "This is the same enterprise
+                policy engine IT departments use to lock down employee browsers.
+                On NixOS you point it at yourself: kill telemetry, kill Pocket,
+                pin your extensions."</li>
+              <li><strong>The banner:</strong> "Firefox will even announce it:
+                your browser is managed by your organisation."</li>
+              <li><strong>The punchline:</strong> Read the docs line deadpan and
+                let it land. "The organisation is you."</li>
+            </ol>
+          </aside>
+        </section>
       </div>
     </div>
 
@@ -135,6 +239,7 @@ endif()
     <script>
       Reveal.initialize({
         hash: true,
+        fragmentInURL: true,
         plugins: [RevealHighlight, RevealNotes],
       });
     </script>

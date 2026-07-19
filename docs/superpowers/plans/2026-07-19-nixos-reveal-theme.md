@@ -32,17 +32,20 @@ Auto-discovery: a `package.nix` under `overlays/top-level/<name>/` becomes `pkgs
 
 **Testing note (this domain):** there is no unit-test runner; the test cycle is *build the derivation and assert the expected files exist* (Tasks 1-2) and *render with headless Firefox and visually confirm* (Task 3). Steps below use that as the red/green cycle.
 
----
+______________________________________________________________________
 
 ### Task 1: Create the `nixos-reveal-theme` package
 
 **Files:**
+
 - Create: `overlays/top-level/nixos-reveal-theme/theme.css`
 - Create: `overlays/top-level/nixos-reveal-theme/highlight.css`
 - Create: `overlays/top-level/nixos-reveal-theme/package.nix`
 
 **Interfaces:**
+
 - Consumes (callPackage args): `lib`, `stdenvNoCC`, `lato`, `atkinson-hyperlegible-next`, `atkinson-hyperlegible-mono` (all top-level nixpkgs attrs).
+
 - Produces: package `nixos-reveal-theme` whose `$out` contains `theme.css`, `highlight.css`, and `fonts/` with 8 TTFs. Consumed by Task 2.
 
 - [ ] **Step 1: Write `theme.css`**
@@ -220,12 +223,14 @@ stdenvNoCC.mkDerivation {
 - [ ] **Step 4: Build and assert the output (the test)**
 
 Run:
+
 ```bash
 cd ~/dev/djacu/talks && git add -A && \
 nix build .#legacyPackages.x86_64-linux.nixos-reveal-theme \
   -o /tmp/nixos-reveal-theme-result && \
 ls /tmp/nixos-reveal-theme-result/ && ls /tmp/nixos-reveal-theme-result/fonts/
 ```
+
 Expected: build succeeds; top level lists `theme.css  highlight.css  fonts`; `fonts/` lists the 8 TTFs (Lato-Regular, Lato-Bold, AtkinsonHyperlegibleNext-{Regular,Bold,Italic,BoldItalic}, AtkinsonHyperlegibleMono-{Regular,Bold}).
 
 - [ ] **Step 5: Format and check**
@@ -247,21 +252,25 @@ points to be tuned live.
 Assisted-by: Claude Code (Claude Fable 5)"
 ```
 
----
+______________________________________________________________________
 
 ### Task 2: Switch the `beholden-to-no-one` deck onto the theme
 
 **Files:**
+
 - Modify: `overlays/top-level/beholden-to-no-one/package.nix`
 - Modify: `overlays/top-level/beholden-to-no-one/index.html`
 
 **Interfaces:**
+
 - Consumes: `nixos-reveal-theme` from Task 1 (its `$out` with `theme.css`, `highlight.css`, `fonts/`).
+
 - Produces: a deck whose `$out/theme/` holds the theme and whose `index.html` links `theme/theme.css` + `theme/highlight.css`.
 
 - [ ] **Step 1: Update `package.nix` to depend on and install the theme**
 
 Replace the entire file with:
+
 ```nix
 {
   lib,
@@ -300,19 +309,25 @@ stdenvNoCC.mkDerivation {
 - [ ] **Step 2: Update `index.html` stylesheet links**
 
 Change the theme link. Replace:
+
 ```html
     <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
 ```
+
 with:
+
 ```html
     <link rel="stylesheet" href="theme/theme.css" id="theme" />
 ```
 
 Change the highlight link. Replace:
+
 ```html
     <link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
 ```
+
 with:
+
 ```html
     <link rel="stylesheet" href="theme/highlight.css" />
 ```
@@ -322,6 +337,7 @@ Leave the `<script>` tags (`dist/reveal.js`, `dist/plugin/notes.js`, `dist/plugi
 - [ ] **Step 3: Build and assert asset resolution (the test)**
 
 Run:
+
 ```bash
 cd ~/dev/djacu/talks && git add -A && \
 nix build .#legacyPackages.x86_64-linux.beholden-to-no-one \
@@ -331,6 +347,7 @@ for f in index.html dist/reveal.js theme/theme.css theme/highlight.css \
   test -e /tmp/talk-result/$f && echo "OK  $f" || echo "MISSING  $f"; done && \
 grep -c 'theme/theme.css\|theme/highlight.css' /tmp/talk-result/index.html
 ```
+
 Expected: all `OK`; the `grep -c` prints `2`.
 
 - [ ] **Step 4: Format and check**
@@ -351,21 +368,25 @@ instead of reveal's bundled black + monokai themes.
 Assisted-by: Claude Code (Claude Fable 5)"
 ```
 
----
+______________________________________________________________________
 
 ### Task 3: Render and tune colors live
 
 **Files:**
+
 - Modify (iteratively): `overlays/top-level/nixos-reveal-theme/theme.css`
 - Modify (iteratively): `overlays/top-level/nixos-reveal-theme/highlight.css`
 
 **Interfaces:**
+
 - Consumes: the built deck from Task 2.
+
 - Produces: final tuned OKLCH values; no interface change.
 
 - [ ] **Step 1: Render the title and code slides**
 
 Run (dedicated profiles; never pkill Firefox):
+
 ```bash
 cd ~/dev/djacu/talks && git add -A && \
 nix build .#legacyPackages.x86_64-linux.beholden-to-no-one -o /tmp/talk-result
@@ -377,6 +398,7 @@ firefox --headless --new-instance --profile "$SC/p2" --window-size=1600,900 \
   --screenshot "$SC/code.png" "file://$T/index.html#/1" 2>/dev/null
 ls -l "$SC"/*.png
 ```
+
 Expected: `title.png` and `code.png` exist.
 
 - [ ] **Step 2: Inspect the screenshots**
@@ -404,7 +426,7 @@ screenshots for legibility on a light background.
 Assisted-by: Claude Code (Claude Fable 5)"
 ```
 
----
+______________________________________________________________________
 
 ## Self-Review
 

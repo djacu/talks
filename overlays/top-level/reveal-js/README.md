@@ -20,14 +20,14 @@ below).
 `dist/plugin/` contains all six built-in plugins as UMD (`.js`), ESM (`.mjs`),
 and type (`.d.ts`) builds:
 
-| Plugin    | Purpose                                                  |
+| Plugin | Purpose |
 | --------- | -------------------------------------------------------- |
-| highlight | Code syntax highlighting (highlight.js)                  |
-| markdown  | Author slides in Markdown                                |
-| math      | KaTeX / MathJax formulas                                 |
-| notes     | Speaker view (self-contained; HTML inlined into the JS)  |
-| search    | Ctrl-F across slides                                     |
-| zoom      | Alt-click to zoom into a region                          |
+| highlight | Code syntax highlighting (highlight.js) |
+| markdown | Author slides in Markdown |
+| math | KaTeX / MathJax formulas |
+| notes | Speaker view (self-contained; HTML inlined into the JS) |
+| search | Ctrl-F across slides |
+| zoom | Alt-click to zoom into a region |
 
 ## Use the classic script includes, not ES modules
 

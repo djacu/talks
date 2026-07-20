@@ -1,0 +1,58 @@
+/* Look: Dark hacker — near-black, neon-green mono, bright code. Layers on the base. */
+:root {
+  --r-background-color: oklch(0.17 0.015 260);
+  --r-main-color: oklch(0.92 0 0);
+  --r-main-font: 'Atkinson Hyperlegible Mono', monospace;
+  --r-heading-font: 'Atkinson Hyperlegible Mono', monospace;
+  --r-heading-color: oklch(0.85 0.21 142);
+  --r-heading-text-transform: uppercase;
+  --r-heading-letter-spacing: 0.03em;
+  --r-link-color: oklch(0.8 0.15 195);
+  --r-selection-background-color: oklch(0.85 0.21 142);
+  --r-selection-color: oklch(0.17 0 0);
+}
+.reveal .hljs {
+  background: oklch(0.12 0.015 260);
+  color: oklch(0.9 0 0);
+  border: 1px solid oklch(0.38 0.03 260);
+  border-radius: 0;
+}
+.hljs-comment,
+.hljs-quote {
+  color: oklch(0.58 0.02 260);
+}
+.hljs-keyword,
+.hljs-selector-tag {
+  color: oklch(0.78 0.16 300);
+}
+.hljs-number,
+.hljs-literal {
+  color: oklch(0.82 0.15 65);
+}
+.hljs-string {
+  color: oklch(0.84 0.18 142);
+}
+.hljs-title,
+.hljs-section,
+.hljs-name {
+  color: oklch(0.8 0.13 225);
+}
+.hljs-type,
+.hljs-built_in {
+  color: oklch(0.78 0.17 340);
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable {
+  color: oklch(0.8 0.13 225);
+}
+.hljs-addition {
+  color: oklch(0.84 0.18 142);
+}
+.hljs-deletion {
+  color: oklch(0.72 0.19 25);
+}
+/* black brand icons -> light on the dark background */
+.reveal .brand-icon {
+  filter: invert(1);
+}

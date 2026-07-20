@@ -19,6 +19,7 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out/fonts
     cp ${./theme.css} $out/theme.css
     cp ${./highlight.css} $out/highlight.css
+    cp -r ${./looks} $out/looks
 
     cp ${lato}/share/fonts/lato/Lato-Regular.ttf $out/fonts/
     cp ${lato}/share/fonts/lato/Lato-Bold.ttf $out/fonts/

@@ -1,0 +1,26 @@
+/* Look: Zine — light paper, brutalist punk, black blocks + red. Layers on the base. */
+:root {
+  --r-background-color: oklch(0.95 0.01 90);
+  --r-main-color: oklch(0.12 0 0);
+  --r-main-font: 'Atkinson Hyperlegible Mono', monospace;
+  --r-heading-font: 'Lato', sans-serif;
+  --r-heading-color: oklch(0.12 0 0);
+  --r-heading-font-weight: 900;
+  --r-heading-text-transform: uppercase;
+  --r-heading-letter-spacing: -0.01em;
+  --r-link-color: oklch(0.52 0.22 25);
+}
+.reveal h1,
+.reveal h2 {
+  background: oklch(0.12 0 0);
+  color: oklch(0.95 0.01 90);
+  display: inline-block;
+  padding: 0.05em 0.3em;
+  box-shadow: 0.14em 0.14em 0 oklch(0.52 0.22 25);
+}
+.reveal .hljs {
+  background: oklch(0.99 0 0);
+  border: 2px solid oklch(0.12 0 0);
+  border-radius: 0;
+  box-shadow: 0.2em 0.2em 0 oklch(0.12 0 0);
+}

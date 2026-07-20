@@ -1,0 +1,48 @@
+/* Look: Amber CRT — dark warm, amber-monochrome, mono. Layers on the base. */
+:root {
+  --r-background-color: oklch(0.15 0.02 60);
+  --r-main-color: oklch(0.82 0.13 75);
+  --r-main-font: 'Atkinson Hyperlegible Mono', monospace;
+  --r-heading-font: 'Atkinson Hyperlegible Mono', monospace;
+  --r-heading-color: oklch(0.9 0.15 82);
+  --r-heading-text-transform: uppercase;
+  --r-heading-letter-spacing: 0.03em;
+  --r-link-color: oklch(0.88 0.15 82);
+  --r-selection-background-color: oklch(0.82 0.13 75);
+  --r-selection-color: oklch(0.15 0.02 60);
+}
+.reveal .brand-icon {
+  filter: invert(85%) sepia(60%) saturate(500%) hue-rotate(350deg);
+}
+.reveal .hljs {
+  background: oklch(0.11 0.015 60);
+  color: oklch(0.82 0.13 75);
+  border: 1px solid oklch(0.4 0.05 60);
+  border-radius: 0;
+}
+.hljs-comment,
+.hljs-quote {
+  color: oklch(0.55 0.06 60);
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-type,
+.hljs-built_in {
+  color: oklch(0.9 0.15 82);
+}
+.hljs-string,
+.hljs-number,
+.hljs-literal,
+.hljs-attr,
+.hljs-variable {
+  color: oklch(0.76 0.1 68);
+}
+.hljs-addition {
+  color: oklch(0.85 0.15 130);
+}
+.hljs-deletion {
+  color: oklch(0.7 0.18 30);
+}

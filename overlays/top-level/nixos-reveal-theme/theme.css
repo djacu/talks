@@ -78,9 +78,12 @@
 .reveal q{font-style:italic}
 .reveal pre{width:90%;margin:var(--r-block-margin) auto;text-align:left;font-size:.55em;font-family:var(--r-code-font);word-wrap:break-word;line-height:1.2em;display:block;position:relative;box-shadow:0 5px 15px #00000026}
 .reveal code{font-family:var(--r-code-font);text-transform:none;tab-size:2}
-.reveal pre code{word-wrap:normal;max-height:400px;padding:5px;display:block;overflow:auto}
+.reveal pre code{white-space:pre-wrap!important;overflow-wrap:anywhere;max-height:400px;padding:5px;display:block;overflow:auto}
 .reveal .code-wrapper{white-space:normal}
-.reveal .code-wrapper code{white-space:pre}
+.reveal .code-wrapper code{white-space:pre-wrap}
+.reveal table.hljs-ln{width:100%;table-layout:fixed}
+.reveal .hljs-ln-numbers{width:2.5em;white-space:nowrap;vertical-align:top}
+.reveal .hljs-ln-code{white-space:pre-wrap;overflow-wrap:anywhere}
 .reveal table{border-collapse:collapse;border-spacing:0;margin:auto}
 .reveal table th{font-weight:700}
 .reveal table th,.reveal table td{text-align:left;border-bottom:1px solid;padding:.2em .5em}

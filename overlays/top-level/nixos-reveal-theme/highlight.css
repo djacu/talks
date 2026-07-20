@@ -18,3 +18,5 @@
 .hljs-subst{ color: oklch(0.25 0 0); }
 .hljs-emphasis{ font-style: italic; }
 .hljs-strong{ font-weight: 700; }
+.hljs-addition{ color: oklch(0.50 0.10 152); }
+.hljs-deletion{ color: oklch(0.55 0.16 25); }

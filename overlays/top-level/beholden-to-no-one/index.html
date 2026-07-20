@@ -408,6 +408,125 @@ jq 'del(.updateUrl, .backupUpdateUrl)' \
             </ol>
           </aside>
         </section>
+
+        <!-- 13. Act IV / Climax: DuckStation, revisited -->
+        <section>
+          <h2>That was DuckStation</h2>
+          <p>A PlayStation emulator. Its build script sniffs for NixOS three ways:</p>
+          <pre><code class="language-cmake" data-trim data-noescape>
+# NixOS? refuse to build.
+MATCHES "ID=nixos"       # /etc/os-release
+EXISTS "/etc/NIXOS"      # marker file
+DEFINED ENV{NIX_STORE}   # build sandbox
+FATAL_ERROR "Unsupported environment."
+          </code></pre>
+          <p class="fragment">
+            <em>"Refuse to build in hostile package environments... this is why
+            we can't have nice things."</em>
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The reveal:</strong> "Remember the cold open? That was
+                DuckStation, a PlayStation 1 emulator. Its build script actively
+                checks whether you're on NixOS, three ways: the os-release file,
+                the /etc/NIXOS marker, and the Nix build sandbox. Any hit, and it
+                fatal-errors."</li>
+              <li><strong>The quote:</strong> Reveal the comment. "The author's
+                own words: refuse to build in hostile package environments. This
+                is why we can't have nice things."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 14. Act IV / Climax: the license fights the distro -->
+        <section>
+          <h2>The license fights the distro</h2>
+          <p>
+            Normally you'd patch it out. But its license forbids distributing a
+            modified build. So nixpkgs removed the package:
+          </p>
+          <pre><code class="language-nix" data-trim data-noescape>
+# nixpkgs aliases.nix
+duckstation = throw
+  "removed following upstream request";
+          </code></pre>
+          <aside class="notes">
+            <ol>
+              <li><strong>Why not just patch it:</strong> "Normally you'd do
+                exactly what we did with glow, patch the check out. But
+                DuckStation's license forbids distributing a modified build
+                script."</li>
+              <li><strong>The removal:</strong> "So nixpkgs literally cannot ship
+                the workaround. It did the only thing it could: removed the
+                package. That throw is what you get now."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 15. Act IV / Climax: but it's still yours -->
+        <section>
+          <h2>But it's still yours</h2>
+          <p class="fragment">The distro can't <em>distribute</em> the patch.</p>
+          <p class="fragment">
+            You can still <em>apply</em> one on your own machine. That isn't
+            distribution.
+          </p>
+          <p class="fragment">
+            The license binds the distro. It doesn't bind you.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The distinction:</strong> "Is this the one case where
+                you lose? No. The license stops the distro from shipping a patch
+                to everyone. It does not stop you from applying one on your own
+                machine. Running a patched build for yourself isn't
+                distribution."</li>
+              <li><strong>Land it:</strong> "The license binds the distro. It
+                doesn't bind you. Even the most hostile upstream can't take the
+                source out of open source."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 16. Close: the ladder -->
+        <section>
+          <h2>The override ladder</h2>
+          <ol>
+            <li class="fragment">Configure</li>
+            <li class="fragment">Overrule the module</li>
+            <li class="fragment">Overrule the package</li>
+            <li class="fragment">Overrule the ecosystem</li>
+            <li class="fragment">Overrule the distro</li>
+            <li class="fragment">Overrule time</li>
+            <li class="fragment">Own the supply chain</li>
+          </ol>
+          <aside class="notes">
+            Recap, one rung per click: "Configure. Overrule the module with
+            mkForce. Overrule the package with overrideAttrs. Overrule the
+            ecosystem with overlays. Overrule the distro, patch nixpkgs itself.
+            Overrule time, pin any commit and roll back anything. And own the
+            supply chain. Whatever stands between you and the source, there's a
+            rung for it."
+          </aside>
+        </section>
+
+        <!-- 17. Close: the final line -->
+        <section>
+          <h1>Escape your fate.</h1>
+          <h3 class="fragment">You have the source.</h3>
+          <div class="byline fragment">
+            <div class="handles">
+              <span class="handle"><img class="brand-icon" src="icons/github.svg" alt="GitHub" />djacu</span>
+              <span class="sep">&middot;</span>
+              <span class="handle"><img class="brand-icon" src="icons/bluesky.svg" alt="Bluesky" />djacu.bsky.social</span>
+            </div>
+          </div>
+          <aside class="notes">
+            "You are not beholden to governments, corporations, or maintainers.
+            Escape your fate, the con's own theme. You have the source. Thank
+            you." Leave the handles up for questions.
+          </aside>
+        </section>
       </div>
     </div>
 

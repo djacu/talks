@@ -236,14 +236,12 @@ programs.firefox.policies = {
         <section>
           <h2>Overrule the package</h2>
           <p>glow's word-wrap fix has sat unmerged for months. Take it anyway:</p>
-          <pre><code class="language-nix" data-trim data-noescape data-line-numbers="1-8|3-6">
+          <pre><code class="language-nix" data-trim data-noescape>
 glow.overrideAttrs (old: {
-  patches = (old.patches or [ ]) ++ [
-    (fetchpatch {
-      url = "https://github.com/charmbracelet/glow/pull/886.patch";
-      hash = "sha256-...";
-    })
-  ];
+  patches = (old.patches or [ ]) ++ [ (fetchpatch {
+    url = "github.com/charmbracelet/glow/pull/886.patch";
+    hash = "sha256-...";
+  }) ];
 })
           </code></pre>
           <aside class="notes">
@@ -270,7 +268,8 @@ glow.overrideAttrs (old: {
           </p>
           <pre class="fragment"><code class="language-nix" data-trim data-noescape>
 src = fetchFromGitHub {
-  owner = "..."; repo = "...";
+  owner = "...";
+  repo = "...";
   rev = "v1.4.0";       # you chose this version
   hash = "sha256-...";  # and pinned this hash
 };

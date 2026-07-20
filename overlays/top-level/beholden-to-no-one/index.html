@@ -323,6 +323,67 @@ src = fetchFromGitHub {
             </ol>
           </aside>
         </section>
+
+        <!-- 10. Act II / Corporations: VS Code phone-home -->
+        <section>
+          <h2>Even Microsoft's binary bends</h2>
+          <p>
+            VS Code phones home to auto-update. nixpkgs edits the shipped config
+            to stop it:
+          </p>
+          <pre><code class="language-bash" data-trim data-noescape>
+# nixpkgs postPatch: "disable update checks"
+jq 'del(.updateUrl, .backupUpdateUrl)' \
+  resources/app/product.json
+          </code></pre>
+          <p class="fragment">
+            No update server left to call. And VSCodium is the same editor,
+            rebuilt fully free.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The phone-home:</strong> "VS Code, the
+                Microsoft-branded build, checks Microsoft's servers and updates
+                itself. On Nix that also breaks the immutable store."</li>
+              <li><strong>The edit:</strong> "nixpkgs runs one jq command at
+                build time, in a step literally commented 'disable update
+                checks,' deleting the two update-URL keys from the product.json
+                baked into the app. The updater now has nowhere to call."</li>
+              <li><strong>VSCodium:</strong> "And if you'd rather not run
+                Microsoft's binary at all, VSCodium is the same editor rebuilt
+                from source, telemetry-free, also in nixpkgs."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 11. Act II / Corporations: Terraform, the exit beat -->
+        <section>
+          <h2>The one thing you can't override</h2>
+          <p>
+            August 2023: HashiCorp relicensed Terraform to the BSL, overnight.
+          </p>
+          <p class="fragment">You can't patch a license.</p>
+          <p class="fragment">
+            So the community forked it. nixpkgs marked Terraform unfree and
+            shipped <strong>OpenTofu</strong> the same day.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The rug-pull:</strong> "In August 2023 HashiCorp
+                relicensed Terraform from open source to the Business Source
+                License, overnight. Same code you'd used for years, new terms,
+                no say."</li>
+              <li><strong>The honest limit:</strong> "Here's the one thing the
+                ladder can't do. You cannot override a license. No patch, no
+                overlay, changes the terms."</li>
+              <li><strong>The exit:</strong> "But this is open source's oldest
+                move: you don't override it, you leave, and you take the code
+                with you. The community forked OpenTofu, and nixpkgs marked
+                Terraform unfree and shipped OpenTofu the same day. Override when
+                you can; exit when you can't."</li>
+            </ol>
+          </aside>
+        </section>
       </div>
     </div>
 

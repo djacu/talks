@@ -384,6 +384,63 @@ jq 'del(.updateUrl, .backupUpdateUrl)' \
             </ol>
           </aside>
         </section>
+
+        <!-- 12. Act III / Governments & supply chain: youtube-dl DMCA -->
+        <section>
+          <h2>The repo vanished. The build didn't.</h2>
+          <p>October 2020: an RIAA takedown wiped youtube-dl off GitHub.</p>
+          <p class="fragment">Nix users kept right on installing it.</p>
+          <p class="fragment">
+            Nix addresses sources by content hash and caches the result. Delete
+            the upstream, and the exact bits are still there, still verifiable.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The takedown:</strong> "October 2020. The RIAA sent
+                GitHub a DMCA notice, and youtube-dl's repository vanished."</li>
+              <li><strong>Kept installing:</strong> "But Nix users kept
+                installing it, the same afternoon."</li>
+              <li><strong>Why:</strong> "Nix doesn't fetch from wherever a
+                project happens to live. It fetches a source by its content
+                hash, and caches the built result by hash too. Delete the GitHub
+                repo and the exact bits are still in the cache, still verifiable.
+                A takedown removes a URL; it can't remove a hash."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 13. Act III / Governments & supply chain: xz backdoor -->
+        <section>
+          <h2>A backdoor aimed at someone else</h2>
+          <p>
+            March 2024: the xz backdoor. nixpkgs briefly shipped the compromised
+            5.6.1.
+          </p>
+          <p class="fragment">The payload hunted for sshd at one exact path:</p>
+          <pre class="fragment"><code class="language-plaintext" data-trim data-noescape>
+looked for:   /usr/bin/sshd
+NixOS ships:  /nix/store/…-openssh/bin/sshd
+          </code></pre>
+          <p class="fragment">
+            Wrong path, wrong build environment. The trap never sprang. Reverted
+            the day it broke.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The backdoor:</strong> "March 2024, CVE-2024-3094, the
+                xz backdoor, one of the scariest supply-chain attacks we've seen.
+                And nixpkgs unstable did briefly ship the compromised 5.6.1."</li>
+              <li><strong>The path:</strong> "But the payload was fussy. The
+                malicious build step only armed under Debian and Fedora's build
+                setup, and the runtime hook looked for sshd at exactly
+                /usr/bin/sshd."</li>
+              <li><strong>The miss:</strong> "NixOS builds in a sandbox that
+                never met the trigger, and its sshd lives in the Nix store, not
+                /usr/bin. The trap was aimed at someone else. nixpkgs reverted
+                the day the CVE dropped. Not immunity, but a real near-miss."</li>
+            </ol>
+          </aside>
+        </section>
       </div>
     </div>
 

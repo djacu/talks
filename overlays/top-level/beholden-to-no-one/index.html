@@ -231,6 +231,99 @@ programs.firefox.policies = {
             </ol>
           </aside>
         </section>
+
+        <!-- 7. Act I / Maintainers: glow, overrule the package -->
+        <section>
+          <h2>Overrule the package</h2>
+          <p>glow's word-wrap fix has sat unmerged for months. Take it anyway:</p>
+          <pre><code class="language-nix" data-trim data-noescape data-line-numbers="1-8|3-6">
+glow.overrideAttrs (old: {
+  patches = (old.patches or [ ]) ++ [
+    (fetchpatch {
+      url = "https://github.com/charmbracelet/glow/pull/886.patch";
+      hash = "sha256-...";
+    })
+  ];
+})
+          </code></pre>
+          <aside class="notes">
+            <ol>
+              <li><strong>The problem:</strong> "There's an open PR on glow that
+                fixes word wrapping. It has sat there for months. On most
+                systems you wait, or you fork and build it by hand."</li>
+              <li><strong>overrideAttrs:</strong> "On Nix you take the package
+                as it is and change one attribute: its patch list."</li>
+              <li><strong>fetchpatch:</strong> "You point fetchpatch straight at
+                the pull request's .patch URL. GitHub serves any PR as a patch.
+                Pin the hash, and your glow has the fix. You didn't wait for the
+                maintainer. Third rung: overrule the package."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 8. Act I / Maintainers: sabotage, pinned hashes -->
+        <section>
+          <h2>A maintainer can burn it down</h2>
+          <p>
+            January 2022: the author of colors.js shipped an infinite loop on
+            purpose. Thousands of apps broke overnight.
+          </p>
+          <pre class="fragment"><code class="language-nix" data-trim data-noescape>
+src = fetchFromGitHub {
+  owner = "..."; repo = "...";
+  rev = "v1.4.0";       # you chose this version
+  hash = "sha256-...";  # and pinned this hash
+};
+          </code></pre>
+          <p class="fragment">
+            A hostile release can't reach you until <em>you</em> bump the hash.
+          </p>
+          <aside class="notes">
+            <ol>
+              <li><strong>The sabotage:</strong> "In 2022 the maintainer of
+                colors.js, millions of downloads a week, intentionally shipped
+                an infinite loop. Anything that auto-pulled the latest version
+                broke instantly."</li>
+              <li><strong>The pin:</strong> "Nix fetches sources by exact
+                version and content hash. You chose the version; you pinned the
+                hash."</li>
+              <li><strong>The point:</strong> "A new release, sabotaged or just
+                broken, cannot enter your build until you change that hash
+                yourself. Auto-update can't hurt you, because there is no
+                auto-update."</li>
+            </ol>
+          </aside>
+        </section>
+
+        <!-- 9. Act I / Maintainers: Home Assistant, the payoff -->
+        <section>
+          <h2>Home Assistant declares you unsupported</h2>
+          <p>
+            A non-profit project. It deprecated every install but its own, and
+            warns yours "will not work after 2026.11."
+          </p>
+          <p class="fragment">
+            nixpkgs' entire reply lives in
+            <code>nixos-was-never-supported.patch</code>:
+          </p>
+          <pre class="fragment"><code class="language-diff" data-trim data-noescape>
+-  deprecated_method = installation_type == "Core"
++  deprecated_method = False
+          </code></pre>
+          <aside class="notes">
+            <ol>
+              <li><strong>The squeeze:</strong> "Home Assistant, run by a
+                non-profit, deprecated every install method except its own
+                Docker image. If you're not in a container or a venv, it now
+                warns your setup stops working after release 2026.11."</li>
+              <li><strong>The reply:</strong> "nixpkgs' whole answer is one line.
+                Flip a boolean to false."</li>
+              <li><strong>The punchline:</strong> "And the patch is named
+                nixos-was-never-supported.patch. That's the talk in one
+                filename: upstream says no, we say noted, and carry on."</li>
+            </ol>
+          </aside>
+        </section>
       </div>
     </div>
 
